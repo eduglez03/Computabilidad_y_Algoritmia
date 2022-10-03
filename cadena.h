@@ -18,16 +18,23 @@
 // Historial de revisiones
 //          04/10/2021 - Creacíon (primera versíon) del ćodigo
 
+#pragma once
 #include <iostream>
 #include <vector>
 
-#include "cadena.h"
+#include "alfabeto.h"
 
-#pragma once
 
-class Alfabeto {
+
+class Cadena {
  public:
-   Alfabeto(std::vector<std::string> alfabeto){alfabeto_ = alfabeto;}
+  Cadena(std::string cadena = "") { cadena_ = cadena; }
+  int Longitud(std::vector<std::string> alfabeto);
+  std::string Inversa(std::vector<std::string> alfabeto);
+  std::string Prefijos(std::vector<std::string> alfabeto);
+  std::string Sufijos(std::vector<std::string> alfabeto);
+  std::string Subcadenas(std::vector<std::string> alfabeto);
+
  private:
-   std::vector<std::string> alfabeto_;
+  std::string cadena_;
 };

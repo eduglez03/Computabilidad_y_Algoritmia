@@ -18,16 +18,15 @@
 // Historial de revisiones
 //          04/10/2021 - Creacíon (primera versíon) del ćodigo
 
+#pragma once 
 #include <iostream>
 #include <vector>
 
-#include "cadena.h"
 
-#pragma once
 
-class Alfabeto {
+class Simbolo {
  public:
-   Alfabeto(std::vector<std::string> alfabeto){alfabeto_ = alfabeto;}
+   Simbolo(std::string simbolo){simbolo_ = simbolo;}
  private:
-   std::vector<std::string> alfabeto_;
+   std::string simbolo_;
 };
