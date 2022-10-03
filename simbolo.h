@@ -22,8 +22,6 @@
 #include <iostream>
 #include <vector>
 
-
-
 class Simbolo {
  public:
    Simbolo(std::string simbolo){simbolo_ = simbolo;}

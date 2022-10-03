@@ -12,11 +12,7 @@
 //         que realizan el trabajo de leer el fichero de entrada
 //         identificando patrones en el texto que dan lugar
 //         al fichero de salida.
-// Referencias:
-//          Enlaces de inteŕes
-//
-// Historial de revisiones
-//          04/10/2021 - Creacíon (primera versíon) del ćodigo
+
 
 #include <iostream>
 #include <vector>
@@ -27,7 +23,7 @@
 int Cadena::Longitud(std::vector<std::string> alfabeto) {
   std::string cadena_auxiliar{""};
   int size{0};
-  if (cadena_ == "&") {
+  if (cadena_ == "&") {  // Se comprueba la cadena vacía
     return 0;
   }
   // Se pasa cada caracter a una cadena_auxiliar
