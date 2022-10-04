@@ -202,3 +202,47 @@ std::string Cadena::Subcadenas(std::vector<std::string> alfabetos) {
   }
     return subcadena_final;
 }
+
+
+
+// ----------------------------------------------------- MODIFICACIÓN -----------------------------------------------------------------
+
+int Cadena::Repeticiones(std::vector<std::string> alfabeto) {
+  std::string cadena_auxiliar{""};
+  int size{0};
+  for (size_t i{0}; i < cadena.length(); ++i) {
+    cadena_auxiliar += cadena.at(i);
+    for (size_t j{0}; j < alfabeto.size(); ++j) {
+      if (cadena_auxiliar == alfabeto[j]) {
+        ++size;
+        cadena_auxiliar.erase();
+      }
+    }
+  }
+
+  
+  for (int i = 0; i < size; i++) {
+    if (cadena[i] == cadena[i -1]) {
+      if (/* condition */) {
+        /* code */
+      }
+      
+
+
+
+      i++;
+    }
+    
+  }
+
+}
+
+size_t countOccurrences(std::string cadena, std::vector<std::string> alfabeto) {
+  size_t count = 0;
+  for (char i : cadena)
+    if (i == c)
+      count++;
+
+  return count;
+}
+

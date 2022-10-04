@@ -3,6 +3,7 @@
 
 #include "cadena.h"
 
+// Implementación de método para calcular la longitud de una cadena
 int Longitud(std::string cadena, std::vector<std::string> alfabeto) {
   std::string cadena_auxiliar{""};
   int size{0};
@@ -18,7 +19,7 @@ int Longitud(std::string cadena, std::vector<std::string> alfabeto) {
   return size;
 }
 
-// adioshola - holaadios
+// Implementación de método para calcular la inversa de la cadena
 std::string Inversa(std::string cadena, std::vector<std::string> simbolos) {
   std::string inversa_final{""};
   std::string inversa_cadena{""};
@@ -51,8 +52,7 @@ std::string Inversa(std::string cadena, std::vector<std::string> simbolos) {
   return inversa_final;
 }
 
-// adioshola - adios / adioshola
-// abbab - a / ab / abb / abba / abbab
+// Método que calcula los prefijos de una cadena
 std::string Prefijos(std::string cadena, std::vector<std::string> simbolos) {
   std::string prefijos{""};
   std::string prefijos_final{"& "};
@@ -72,8 +72,7 @@ std::string Prefijos(std::string cadena, std::vector<std::string> simbolos) {
   return prefijos_final;
 }
 
-// adioshola - hola / adioshola
-// abbab - b / ab / bab / bbab / abbab
+// Método que calcula los sufijos de una cadena
 std::string Sufijos(std::string cadena, std::vector<std::string> simbolos) {
   std::string sufijos{""};
   std::string sufijos_final{"& "};
@@ -116,9 +115,7 @@ std::string Sufijos(std::string cadena, std::vector<std::string> simbolos) {
   return sufijos_final;
 }
 
-// abbab - a / ab / abb / abba / abbab / b / bb / bba / bbab / b / ba / bab / a/ ab / b 
-// adioshola - adios / adioshola / hola
-
+// Método que calcula la subcadenas
 std::string Subcadenas(std::string cadena, std::vector<std::string> simbolos) {
   std::string complemento{""};
   std::string subcadena{""};
