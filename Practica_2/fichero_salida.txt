@@ -1,0 +1,4 @@
+Alfabeto 1: a b c  | Lenguaje 1: { a abc cab bbcc }
+Alfabeto 2: 0 1  | Lenguaje 2: { 0 1 00 01 10 11 }
+Concatenacion: { a0 a1 a00 a01 a10 a11 abc0 abc1 cab0 cab1 abc00 abc01 abc10 abc11 bbcc0 bbcc1 cab00 cab01 cab10 cab11 bbcc00 bbcc01 bbcc10 bbcc11 }
+
