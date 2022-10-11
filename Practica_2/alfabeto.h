@@ -21,7 +21,7 @@
 #ifndef ALFABETO_H
 #define ALFABETO_H
 
-// clase Alfabeto que permite crear alfabetos apartir de simbolos y trabajar con ellos
+
 class Alfabeto {
  public:
   Alfabeto(const Simbolo& kSimboloAnadir);  // constructor de la clase apartir de un simbolo

@@ -14,7 +14,6 @@
 #include "lenguaje.h"
 
 
-//------------------Métodos-de-clase------------------//
 // constructor de la clase apartir de una cadena
 Lenguaje::Lenguaje(const Cadena& kCadenaAnadir) {
   lenguaje_.insert(kCadenaAnadir);
@@ -158,15 +157,13 @@ bool operator<(const Cadena& cadena_comparar1, const Cadena& cadena_comparar2) {
 } 
 
 
-//------------------Ejercicios-Practica------------------//
-
 // metodo que devuelve el lenguaje concatenado con otro por parámetros
 Lenguaje Lenguaje::Concatenacion(const Lenguaje& kLenguajeOperar) const {
   Lenguaje lenguaje_concatenacion;
   Cadena cadena_anadir;
   for (auto bucle1 : lenguaje_) {  // recorremos el primer conjunto buscando las primeras partes de la cadena
     for (auto bucle2 : kLenguajeOperar.GetLenguaje()) {    // recorremos el segundo conjunto formando las nuevas cadenas
-      cadena_anadir.ResetCadena();   // reseteamos la cadena para evitar sobreescribir
+      cadena_anadir.ResetCadena();   // reseteamos la cadena para evitar que se sobreescriba
       cadena_anadir.ConcatenarDelante(bucle1.GetCadenaSim());
       cadena_anadir.ConcatenarDelante(bucle2.GetCadenaSim());
       lenguaje_concatenacion.AnadirLenguaje(cadena_anadir);
@@ -239,3 +236,9 @@ Lenguaje Lenguaje::Potencia(const int kPotencia) const {
   }
   return lenguaje_potencia;
 }   
+
+
+
+
+// ----------------------------- MODIFICACIÓN DE CLASE ---------------------------------
+

@@ -16,7 +16,6 @@
 #include <string>
 #include <vector>
 
-//------------------Métodos-de-clase------------------//
 // Constructor parametrizado de la clase Cadena con un parámetro que es un Simbolo
 Cadena::Cadena(const Simbolo& kSimboloConvertir) {
   cadena_.SetSimbolo(kSimboloConvertir.GetSimbolo());
@@ -82,8 +81,6 @@ int Cadena::Longitud() const {
   return int(cadena_.Longitud());
 }
 
-
-//------------------Sobrecarga-de-operadores------------------//
 // sobrecarga del operador + para ampliar la cadena concatenando una string
 Cadena Cadena::operator+(const Simbolo& kSimboloAnadir) {
   Cadena cadena_nueva{cadena_.GetSimbolo() + kSimboloAnadir.GetSimbolo()};
@@ -108,8 +105,6 @@ std::ostream& operator<<(std::ostream& out, const std::vector<Cadena>& kVectorMo
   return out;
 } 
 
-
-//------------------Ejercicios-Practica------------------//
 // Método que crea una cadena inversa
 Cadena Cadena::Inversa() const {
   Cadena cadena_inversa;

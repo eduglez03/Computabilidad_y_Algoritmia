@@ -84,11 +84,11 @@ int Alfabeto::LongitudAlfabeto() const {
 
 // Método que comprueba si una cadena pertenece al alfabeto
 bool Alfabeto::CadenaPertenceAlfabeto(const Cadena& kCadenaComprobar) const {
-  bool comprobacion_final{false};   // variable que comprueba si la cadena pertenece al alfabeto
-  Simbolo simbolo_comprobar1; // variable que tomara el valor del simbolo  del alfabeto que estamos comprobando si esta en la cadena
-  int longitud_simbolo;  // variable que tomará la longitud del simbolo_comprobar para saber el tamaño de comparación
-  Simbolo simbolo_comprobar2; // variable que tomara el valor del simbolo de la cadena que estamos comprobando si esta en el alfabeto
-  int posicion_comprobar{0}; // varibale que toma la posicion de la cadena en la cual empieza simbolo_comprobar2
+  bool comprobacion_final{false};  
+  Simbolo simbolo_comprobar1; 
+  int longitud_simbolo;  
+  Simbolo simbolo_comprobar2; 
+  int posicion_comprobar{0}; 
 
   if ((kCadenaComprobar.GetCadenaStr() == "&") || (kCadenaComprobar.GetCadenaStr() == "")) {   // si es una cadena vacia siempre pertenece al alfabeto
     return true;
@@ -124,15 +124,14 @@ bool Alfabeto::CadenaPertenceAlfabeto(const Cadena& kCadenaComprobar) const {
 }
 
 
-//------------------Ejercicio-Practica------------------//
 // Método que te dice cuantos simbolos de ese alfabeto tienes en esa cadena
 int Alfabeto::CantidadSimbolosCadena(const Cadena& kCadenaComprobar) const {
-  int cantidad_simbolos{0};  // variable para contar cuantos simbolos tiene la cadena
-  bool comprobacion_final{false};   // variable que comprueba si la cadena pertenece al alfabeto
-  Simbolo simbolo_comprobar1; // variable que tomara el valor del simbolo  del alfabeto que estamos comprobando si esta en la cadena
-  int longitud_simbolo;  // variable que tomará la longitud del simbolo_comprobar para saber el tamaño de comparación
-  Simbolo simbolo_comprobar2; // variable que tomara el valor del simbolo de la cadena que estamos comprobando si esta en el alfabeto
-  int posicion_comprobar{0}; // varibale que toma la posicion de la cadena en la cual empieza simbolo_comprobar2
+  int cantidad_simbolos{0};  
+  bool comprobacion_final{false};   
+  Simbolo simbolo_comprobar1; 
+  int longitud_simbolo;  
+  Simbolo simbolo_comprobar2; 
+  int posicion_comprobar{0}; 
 
   if (kCadenaComprobar.GetCadenaStr() == "&") {   // si es una cadena vacia su longitud es 0
     return 0;
