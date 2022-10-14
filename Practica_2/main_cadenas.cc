@@ -46,36 +46,30 @@ int main(int argc, char* argv[]) {
   std::string parametro{argv[4]};  // opcion escogida por el usuario
   std::string fichero_entrada1{argv[1]};  // fichero de entrada
   std::string fichero_entrada2{argv[2]};  // fichero de entrada
-  std::string fichero_entrada3{argv[3]};
-  std::string fichero_salida{argv[4]};  // fichero de salida
+  std::string fichero_salida{argv[3]};  // fichero de salida
 
   if (parametro.length() == 1) { // comprobamos is el opcode es un solo caracter
     int opcion_usuario{std::stoi(parametro)};
     std::ifstream fichero_leer1{fichero_entrada1};  // fichero para leer los datos
     std::ifstream fichero_leer2{fichero_entrada2};  // fichero para leer los datos
-    std::ifstream fichero_leer3{fichero_entrada3};
     std::ofstream fichero_escribir{fichero_salida};   // fichero para escribir los datos
     std::string linea_actual1;
     std::string linea_actual2;
-    std::string linea_actual3;
 
-    while (getline(fichero_leer1, linea_actual1) && getline(fichero_leer2, linea_actual2) && getline(fichero_leer3, linea_actual3)) {
+
+    while (getline(fichero_leer1, linea_actual1) && getline(fichero_leer2, linea_actual2)) {
       Simbolo simbolo_vacio{"&"};
       Alfabeto alfabeto_1{simbolo_vacio};  // alfabeto para rellenar
       Alfabeto alfabeto_2{simbolo_vacio};  // alfabeto para rellenar
-      Alfabeto alfabeto_3{simbolo_vacio};
       Lenguaje lenguaje_1;  // lenguaje para rellenar
       Lenguaje lenguaje_2;  // lenguaje para rellenar
-      Lenguaje lenguaje_3;
       
       ObtieneAlfabetoLenguaje(linea_actual1, alfabeto_1, lenguaje_1);  // metodo para sacar los lenguajes y los alfabetos
       ObtieneAlfabetoLenguaje(linea_actual2, alfabeto_2, lenguaje_2);  // metodo para sacar los lenguajes y los alfabetos
-      ObtieneAlfabetoLenguaje(linea_actual3, alfabeto_3, lenguaje_3);
       fichero_escribir << "Alfabeto 1: " << alfabeto_1 << " | " << "Lenguaje 1: " << lenguaje_1 << std::endl;
       fichero_escribir << "Alfabeto 2: " << alfabeto_2 << " | " << "Lenguaje 2: " << lenguaje_2 << std::endl;
-      fichero_escribir << "Alfabeto 3: " << alfabeto_3 << " | " << "Lenguaje 3: " << lenguaje_3 << std::endl;
       
-      if (lenguaje_1.LenguajePertenceAlfabeto(alfabeto_1) == false || lenguaje_2.LenguajePertenceAlfabeto(alfabeto_2) == false || lenguaje_3.LenguajePertenceAlfabeto(alfabeto_3) == false) {  // comprobamos si los lenguajes pertenecen a sus alfabetos
+      if (lenguaje_1.LenguajePertenceAlfabeto(alfabeto_1) == false || lenguaje_2.LenguajePertenceAlfabeto(alfabeto_2) == false) {  // comprobamos si los lenguajes pertenecen a sus alfabetos
         fichero_escribir << "(hay un lenguaje que no se puede formar a partir del alfabeto)";
 
       } else{

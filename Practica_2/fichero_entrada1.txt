@@ -1,1 +1,2 @@
-{ a b } { a ab ba }
+{ a b c } { a ab ba c }
+{ 0 1 } { 0 1 10 }

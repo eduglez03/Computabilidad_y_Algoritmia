@@ -1,4 +1,8 @@
-Alfabeto 1: a b  | Lenguaje 1: { a ab ba }
+Alfabeto 1: 0 1  | Lenguaje 1: { 0 1 10 }
+Alfabeto 2: a b c  | Lenguaje 2: { a c ab ba }
+Inversa: { 0 1 01 }
+
+Alfabeto 1: 0 1  | Lenguaje 1: { 0 1 101 111 }
 Alfabeto 2: 0 1  | Lenguaje 2: { 0 1 10 }
-Interseccion: { }
+Inversa: { 0 1 101 111 }
 
