@@ -16,14 +16,6 @@
 // Historial de revisiones
 // 12/09/2023 - Creación (primera versión) del código
 
-#pragma once
-
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <map>
-#include <string>
-#include <vector>
 
 #include "p01_multiple_grades.h"
 

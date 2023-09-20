@@ -16,11 +16,9 @@
 // Historial de revisiones
 // 12/09/2023 - Creación (primera versión) del código
 
-#pragma once
+#include <iostream>
 
-#include<iostream>
-
-#include "p01_multiple_grades.cc"
+#include "p01_multiple_grades.h"
 
 /**
  * @brief Help Function that print the information about how to use the program
