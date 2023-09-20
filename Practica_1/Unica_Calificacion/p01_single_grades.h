@@ -29,12 +29,12 @@
  */
 class StudentMap {
   public:
-    // Constructor
+    // Constructor por defecto
     StudentMap() {}
 
     void CreateMap(const char*);
-    void PrintMap() const;
     void AddStudent(const std::string&, double, const std::string&);
+    void PrintMap() const;
 
   private:
     std::map<std::string, double> students;
