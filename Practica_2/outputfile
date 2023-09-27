@@ -1,0 +1,5 @@
+Los sufijos de las cadenas son respectivamnete: 
+& -----> {&}
+hola -----> {hola, ola, la, a, &}
+abbab -----> {abbab, bbab, bab, ab, b, &}
+6793836 -----> {6793836, 793836, 93836, 3836, 836, 36, 6, &}
