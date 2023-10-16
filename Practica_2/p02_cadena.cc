@@ -125,3 +125,14 @@ std::vector<Cadena> Cadena::sufijos() {
   
   return cadena_sufijos;
 }
+
+void Cadena::subcadenas(int limite) {
+  if (this->get_length() < limite) {
+    std::cout << '&';
+  } else {
+    for (int i = 0; i < (this->get_length() - 1);) {
+      std::cout << this->strings_.substr(i, limite) << ", ";
+      i++;
+    }
+  }
+}

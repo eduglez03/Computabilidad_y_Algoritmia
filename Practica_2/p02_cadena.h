@@ -34,6 +34,7 @@ class Cadena {
     std::string inversa(); // Declracion del metodo que calcula la inversa de una cadena
     std::vector<Cadena> prefijos(); // Declaracion del metodo que calcula los prefijos de una cadena
     std::vector<Cadena> sufijos(); // Declaracion del metodo que calcula los sufijos de una cadena
+    void subcadenas(int);  // Declaracion del metodo que calcula las subcadenas de una cadena
 
     friend std::ostream& operator<<(std::ostream&, const Cadena&); // Sobrecarga operador extraccion
     bool operator<(const Cadena&) const; // Sobrecarga operador "menor que" para usarlo en el set

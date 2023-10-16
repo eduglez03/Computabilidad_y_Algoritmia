@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
   int opcode{stoi(opcode_opcion)};
 
   // Comprobacion de que el opcode sea válido
-  if (opcode > 5) {
+  if (opcode > 6) {
     std::cerr << "Modo de empleo: " << argv[0] << " <nombre_del_archivo entrada>" << " <nombre_del_archivo salida>" << " <opcode>" << std::endl;
     std::cout << "Pruebe: " << argv[0] << " --help para mas información" << std::endl; 
     return 1; // Código de error
@@ -173,6 +173,21 @@ int main(int argc, char* argv[]) {
           contador++;
         }
         fichero_salida << "}" << std::endl;
+      }
+      break;
+    
+    case 6: // Subcadenas
+      int subcadena{0};
+      int contador{0};
+
+      std::cout << "Introduzca la longitud de las subcadenas" << std::endl;
+      std::cin >> subcadena;
+
+      fichero_salida << "Las subcadenas de longitud " << subcadena << " son: " << std::endl;
+
+      for (Cadena elemento : cadenas) {
+        elemento.subcadenas(subcadena); // Llamamos al metodo que calcula las subcadenas
+        std::cout << std::endl;
       }
       break;
   }

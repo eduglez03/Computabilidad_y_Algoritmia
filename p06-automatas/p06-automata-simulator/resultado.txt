@@ -1,0 +1,11 @@
+aabb --- Accepted
+abcb --- Accepted
+abcbcb --- Accepted
+aaabbb --- Accepted
+& --- Rejected
+a --- Rejected
+b --- Rejected
+ab --- Accepted
+ba --- Rejected
+abc --- Rejected
+acb --- Rejected

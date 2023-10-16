@@ -1,6 +1,8 @@
-#include<iostream>
-#include<vector>
-#include<set>
+#include <iostream>
+#include <vector>
+#include <set>
+
+#pragma once 
 
 #include "simbolo.h"
 
@@ -9,40 +11,13 @@ class Alfabeto {
     Alfabeto() {} // Constructor por defecto
     Alfabeto(std::string& cadena); // Constructor de la clase
 
-    std::vector<Simbolo> get_alfabeto(); // Getter alfabeto
-    int get_size(); // Getter tamaño alfabeto
+    std::vector<Simbolo> get_alfabeto() const { return alfabeto_;} // Getter alfabeto
+    int get_size() const { return alfabeto_.size();} // Getter tamaño alfabeto
+    void add(Simbolo simbolo); // Metodo que añade un nuevo simbolo al alfabeto
+    bool buscar(Simbolo simbolo) const; // Metodo que comprueba si un elemento existe en el alfabeto
 
     friend std::ostream& operator<<(std::ostream& out, const Alfabeto& alfabeto); // Sobrecarga operador extraccion
 
   private:
-    std::set<Simbolo> alfabeto_;
+    std::vector<Simbolo> alfabeto_;
 };
-
-
-Alfabeto::Alfabeto(std::string& cadena) {
-  for (const auto& elemento : cadena) {
-    Simbolo simbolo = elemento;
-    alfabeto_.insert(simbolo);
-  }
-}
-
-// Getter alfabeto
-std::vector<Simbolo> Alfabeto::get_alfabeto() {
-  std::vector<Simbolo> vector_simbolos(alfabeto_.begin(), alfabeto_.end());
-  return vector_simbolos;
-}
-
-// Getter tamaño alfabeto
-int Alfabeto::get_size() {
-  return alfabeto_.size();
-}
-
-// Sobrecarga operador extraccion
-std::ostream& operator<<(std::ostream& out, Alfabeto& alfabeto) {
-  out << "{ ";
-  for (auto simbolo : alfabeto.get_alfabeto()) {
-    out << simbolo.get_simbolo() << " ";
-  }
-  out << "}";
-  return out;
-}
