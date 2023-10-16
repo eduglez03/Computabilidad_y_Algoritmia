@@ -1,39 +1,64 @@
+#include <iostream>
 #include "alfabeto.h"
 
-
-// Constructor 
-Alfabeto::Alfabeto(std::string& cadena) {
-  for (const auto& elemento : cadena) {
-    Simbolo simbolo(elemento);
-    add(simbolo);
+/// Constructor
+Alphabet::Alphabet(std::string& string) {
+  for (const auto& elem : string) {
+    Symbol symbol = elem;
+    add(symbol);
   }
 }
 
-// Sobrecarga operador extraccion
-std::ostream& operator<<(std::ostream& out, const Alfabeto& alfabeto) {
+/** 
+ *  @brief Sobrecarga del operador <<
+ *  @param[out] out
+ *  @param[in] alphabet
+ */
+std::ostream& operator<<(std::ostream& out, const Alphabet& alphabet) {
   out << "{ ";
-  for (auto simbolo : alfabeto.get_alfabeto()) {
-    out << simbolo.get_simbolo() << " ";
+  for (const auto& symbol : alphabet.getAlphabet()) {
+    out << symbol.getSymbol() << SPACE;
   }
   out << "}";
   return out;
 }
 
-// Metodo que comprueba si un simbolo existe en el alfabeto
-bool Alfabeto::buscar(Simbolo simbolo) const {
-  bool encontrado = false;
-  for (const auto& elemento : get_alfabeto()) {
-    if (simbolo.get_simbolo() == elemento.get_simbolo()) encontrado = true;
+/** 
+ *  @brief Comprueba si un símbolo pertenece a un alfabeto
+ *  @param[in] symbol
+ *  @return True si pertenece, false si no
+ */
+bool Alphabet::find(Symbol symbol) const {
+  bool found = false;
+  for (const auto& elem : getAlphabet()) {
+    if (symbol.getSymbol() == elem.getSymbol()) found = true;
   }
-  return encontrado;
+  return found;
 }
 
-// Metodo que añade un nuevo simbolo al alfabeto si no existe en el
-void Alfabeto::add(Simbolo simbolo_entrada) {
-  if(!buscar(simbolo_entrada)) {
-    alfabeto_.push_back(simbolo_entrada);
-  }
+/** 
+ *  @brief Añade un símbolo a un alfabeto (si no lo contiene ya)
+ *  @param[in] symbol
+ */
+void Alphabet::add(Symbol symbol) {
+  if (!find(symbol)) {
+    alphabet_.push_back(symbol);
+  } 
 }
 
-
-
+/** 
+ *  @brief Sobrecarga de la suma (unión)
+ *  @param[in] alphabet1
+ *  @param[in] alphabet2
+ *  @return Alfabeto suma (unión)
+ */
+Alphabet operator+(const Alphabet& alphabet1, const Alphabet& alphabet2) {
+  Alphabet new_alphabet;
+  for (const auto& elem : alphabet1.getAlphabet()) {
+    new_alphabet.add(elem);
+  }
+  for (const auto& elem : alphabet2.getAlphabet()) {
+    new_alphabet.add(elem);
+  }
+  return new_alphabet;
+}

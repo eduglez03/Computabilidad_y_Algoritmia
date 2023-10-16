@@ -1,22 +1,39 @@
+#include <iostream>
 #include "simbolo.h"
 
-// Sobrecarga operador extraccion
-std::ostream& operator<<(std::ostream& out, const Simbolo& simbolo) {
-  out << simbolo.get_simbolo();
+/** 
+ *  @brief Sobrecarga del operador <<
+ *  @param[out] out
+ *  @param[in] symbol
+ */
+std::ostream& operator<<(std::ostream& out, const Symbol& symbol) {
+  out << symbol.getSymbol();
   return out;
 }
 
-// Sobrecarga operador ==
-bool operator==(const Simbolo& simbolo1, const Simbolo& simbolo2) {
-  return simbolo1.get_simbolo() == simbolo2.get_simbolo();
+/** 
+ *  @brief Sobrecarga del operador ==
+ *  @param[in] symbol1
+ *  @param[in] symbol2
+ */
+bool operator==(const Symbol& symbol1, const Symbol& symbol2) {
+  return symbol1.getSymbol() == symbol2.getSymbol();
 }
 
-// Sobrecarga operador !=
-bool operator!=(const Simbolo& simbolo1, const Simbolo& simbolo2) {
-  return simbolo1.get_simbolo() != simbolo2.get_simbolo();
+/** 
+ *  @brief Sobrecarga del operador !=
+ *  @param[in] symbol1
+ *  @param[in] symbol2
+ */
+bool operator!=(const Symbol& symbol1, const Symbol& symbol2) {
+  return symbol1.getSymbol() != symbol2.getSymbol();
 }
 
-// Sobrecarga operador < 
-bool operator<(const Simbolo& simbolo1, const Simbolo& simbolo2) {
-  return simbolo1.get_simbolo() < simbolo2.get_simbolo();
+/** 
+ *  @brief Sobrecarga del operador <
+ *  @param[in] symbol1
+ *  @param[in] symbol2
+ */
+bool operator<(const Symbol& symbol1, const Symbol& symbol2) {
+  return symbol1.getSymbol() < symbol2.getSymbol();
 }

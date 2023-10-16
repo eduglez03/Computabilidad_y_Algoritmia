@@ -1,22 +1,35 @@
-#include<iostream>
-#include<vector>
+#ifndef STRING_H
+#define STRING_H
+
+#include <iostream>
+#include <string>
+#include <vector>
 
 #include "simbolo.h"
 #include "alfabeto.h"
 
-class Cadena {
-  public:
-    Cadena(std::string& string); // Constructor de la clase
-
-    Alfabeto get_alfabeto() const { return alfabeto_; } // Getter alfabeto cadena
-    std::string get_cadena() const; // Getter cadena
-    std::string get_string() const { return string_; } // Getter string
-    int length() { return cadena_.size(); } // Getter longitud cadena
-
-    friend std::ostream& operator<<(std::ostream& out, const Cadena& cadena); // Sobrecarga operador <<
-
-  private:
-    Alfabeto alfabeto_;
-    std::vector<Simbolo> cadena_;
-    std::string string_;
+class Sequence {
+ private:
+  Alphabet alphabet_;
+  std::vector<Symbol> sequence_;
+  std::string string_;
+ public:
+  /// Constructor
+  Sequence(std::string& string);
+  /// Getters
+  Alphabet getAlphabet() const { return alphabet_; };
+  std::string getSequence() const;
+  std::string getString() const { return string_; };
+  /// Funciones
+  int length();
+  std::string reverse();
+  // Sequence reverse();
+  std::string prefixes();
+  std::string suffixes();
+  std::string substrings();
+  /// Modificación
+  bool is_in(Symbol symbol);
+  std::string non_used();
 };
+
+#endif

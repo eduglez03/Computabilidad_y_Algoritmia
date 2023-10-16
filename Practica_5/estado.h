@@ -1,29 +1,45 @@
-#pragma once
+#ifndef STATE_H
+#define STATE_H
 
-#include<iostream>
-#include<set>
+#include <iostream>
+#include <set>
+#include <string>
 
-class Estado {
-  public:
-    Estado() {} // Constructor por defecto
-    Estado(std::string nombre, unsigned int identificador, bool aceptacion); // Constructor de la clase
+/** 
+ *  @brief Esta clase se usa para guardar los estados
+ *         Guarda los siguientes datos:
+ *            - Nombre del estado (name_)
+ *            - Identificador del estado (id_)
+ *            - Indica si es de aceptación (final_)
+ */
+class State {
+ private:
+  std::string name_ = "";
+  unsigned int id_;
+  bool final_ = false;
 
-    bool get_aceptacion() const { return aceptacion_;} // Getter si el estado es o no de aceptacion
-    unsigned int get_identificador() const { return identificador_; } // Getter identificador del estado
+ public:
+  /// Constructores
+  State() {};
+  State(const State& state);
+  State(std::string name, unsigned int id, bool final);
 
-    void set_aceptacion(bool aceptacion) { aceptacion_ = aceptacion; } // Setter si el estado es o no de aceptacion
-    void set_identificador(unsigned int identificador) { identificador_ = identificador; } // Setter identificador estado
-    std::string get_nombre() const { return nombre_; } // Getter nombre
-    void set_nombre(std::string nombre) { nombre_ = nombre; } // Setter nombre
+  /// Getters y setters
+  bool getFinal() const { return final_; };
+  void setFinal(bool final) { final_ = final; };
+  std::string getName() const { return name_; };
+  void setName(std::string name) { name_ = name; };
+  unsigned int getID() const { return id_; };
+  void setID(unsigned int id) { id_= id; };
+  
+  /// Sobrecargas
+  void operator=(const State& state);
+  friend bool operator==(const State& state1, const State& state2);
+  friend bool operator!=(const State& state1, const State& state2);
+  friend bool operator<(const State& state1, const State& state2);
+  friend bool operator>(const State& state1, const State& state2);
+  friend std::ostream& operator<<(std::ostream& out, const State& state);
 
-    friend bool operator==(const Estado& estado1, const Estado& estado2); // Sobrecarga operador ==
-    friend bool operator!=(const Estado& estado1, const Estado& estado2); // Sobrecarga operador !=
-    friend bool operator<(const Estado& estado1, const Estado& estado2); // Sobrecarga operador <
-    friend bool operator>(const Estado& estado1, const Estado& estado2); // Sobrecarga operador >
-    friend std::ostream& operator<<(std::ostream& out, const Estado& estado); // Sobrecarga operador extraccion
-
-  private:
-    std::string nombre_ = "";
-    unsigned int identificador_;
-    bool aceptacion_ = false;
 };
+
+#endif

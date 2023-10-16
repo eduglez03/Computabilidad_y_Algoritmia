@@ -1,30 +1,43 @@
-#include<iostream>
+#ifndef TRANSITION_H
+#define TRANSITION_H
 
+#include <iostream>
 #include "simbolo.h"
 #include "estado.h"
 
-class Transicion {
-  public:
-    Transicion() {} // Constructor por defecto
-    Transicion(const Simbolo simbolo, const unsigned int estadoActual, const unsigned int estadoSiguiente); // Constructor de la clase
+/** 
+ *  @brief Esta clase se usa para guardar las transiciones
+ *         Guarda los siguientes datos:
+ *            - Símbolo con el que se transita (symbol_)
+ *            - Siguientes estados (next_state_)
+ *            - Estado actual (actual_state_)
+ */
+class Transition {
+ private:
+  Symbol symbol_;
+  unsigned int actual_state_;
+  unsigned int next_state_;
 
-    Simbolo get_simbolo() const { return simbolo_; } // Getter simbolo con el que se transita
-    int get_estadoActual() const { return estadoActual_; } // Getter estado actual
-    int get_estadoSiguiente() const { return estadoSiguiente_; } // Getter estado siguiente
+ public:
+  /// Constructores
+  Transition() {};
+  Transition(const Transition& transition);
+  Transition(const Symbol symbol, const unsigned int actual_state, const unsigned int next_state);
 
-    void set_simbolo(Simbolo simbolo) { simbolo_ = simbolo; } // Setter simbolo con el que se transita
-    void set_estadoActual(unsigned int estado) { estadoActual_ = estado; } // Setter estado actual
-    void set_estadoSiguiente(unsigned int estado) { estadoSiguiente_ = estado; } // Setter estado siguiente
+  /// Getters y setters
+  void setSymbol(Symbol symbol) { symbol_ = symbol; };
+  Symbol getSymbol() const { return symbol_; };
+  void setActualState(unsigned int state) { actual_state_ = state; };
+  unsigned int getActualState() const { return actual_state_; };
+  void setNextState(unsigned int states) { next_state_ = states; };
+  unsigned int getNextState() const { return next_state_; };
 
-    friend bool operator==(const Transicion& transicion1, const Transicion& transicion2); // Sobrecarga operador ==
-    friend bool operator!=(const Transicion& transicion1, const Transicion& transicion2); // Sobrecarga operador !=
-    friend bool operator<(const Transicion& transicion1, const Transicion& transicion2); // Sobrecarga operador <
-    friend bool operator>(const Transicion& transicion1, const Transicion& transicion2); // Sobrecarga operador >
-    friend std::ostream& operator<<(std::ostream& out, const Transicion& transicion); // Sobrecarga operador extraccion
-
-  private:
-    Simbolo simbolo_; // Simbolo con el que se transita
-    unsigned int estadoActual_;
-    unsigned int estadoSiguiente_;
-
+  /// Sobrecargas
+  friend bool operator==(const Transition& transition1, const Transition& transition2);
+  friend bool operator!=(const Transition& transition1, const Transition& transition2);
+  friend bool operator<(const Transition& transition1, const Transition& transition2);
+  friend bool operator>(const Transition& transition1, const Transition& transition2);
+  friend std::ostream& operator<<(std::ostream& out, const Transition& transition);
 };
+
+#endif

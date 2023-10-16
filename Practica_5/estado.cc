@@ -1,38 +1,53 @@
+#include <iostream>
 #include "estado.h"
 
-
-// Constructor
-Estado::Estado(std::string nombre, unsigned int identificador, bool aceptacion) {
-  nombre_ = nombre;
-  identificador_ = identificador;
-  aceptacion_ = aceptacion;
+/// @brief Constructor de copia
+State::State(const State& state) {
+  name_ = state.getName();
+  id_ = state.getID();
+  final_ = state.getFinal();
 }
 
-// Sobrecarga del operador ==
-bool operator==(const Estado& estado1, const Estado& estado2) {
-  bool condicion = true;
-  if (estado1.get_identificador() != estado2.get_identificador()) condicion = false;
-  return condicion;
+/// @brief Constructor con parámetros
+State::State(std::string name, unsigned int id, bool final) {
+  name_ = name;
+  id_ = id;
+  final_ = final;
 }
 
-// Sobrecarga del operador !=
-bool operator!=(const Estado& estado1, const Estado& estado2) {
-  return !(estado1 == estado2);
+/// @brief Sobrecarga del operador =
+void State::operator=(const State& state) {
+  name_ = state.getName();
+  id_ = state.getID();
+  final_ = state.getFinal();
 }
 
-// Sobrecarga del operador <
-bool operator<(const Estado& estado1, const Estado& estado2) {
-  return (estado1.get_identificador() < estado2.get_identificador());
+
+/// @brief Sobrecarga del operador ==
+bool operator==(const State& state1, const State& state2) {
+  bool equal = true;
+  if (state1.getID() != state2.getID()) equal = false;
+  return equal;
 }
 
-// Sobrecarga del operador >
-bool operator>(const Estado& estado1, const Estado& estado2) {
-  return !(estado1 < estado2);
+/// @brief Sobrecarga del operador !=
+bool operator!=(const State& state1, const State& state2) {
+  return !(state1 == state2);
 }
 
-// Sobrecarga del operador <<
-std::ostream& operator<<(std::ostream& out, const Estado& estado) {
-  out << estado.get_nombre() << "(" << estado.get_identificador() << ")";
-  out << "(" << estado.get_aceptacion() << ")";
+/// @brief Sobrecarga del operador <
+bool operator<(const State& state1, const State& state2) {
+  return (state1.getID() < state2.getID());
+}
+
+/// @brief Sobrecarga del operador >
+bool operator>(const State& state1, const State& state2) {
+  return !(state1 < state2);
+}
+
+/// @brief Sobrecarga del operador <<
+std::ostream& operator<<(std::ostream& out, const State& state) {
+  out << state.getName() << "(" << state.getID() << ")";
+  out << "(" << state.getFinal() << ")";
   return out;
 }

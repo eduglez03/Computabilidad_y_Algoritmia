@@ -1,23 +1,33 @@
+#ifndef ALPHABET_H
+#define ALPHABET_H
+
 #include <iostream>
 #include <vector>
-#include <set>
-
-#pragma once 
-
+#include <string>
 #include "simbolo.h"
 
-class Alfabeto {
-  public:
-    Alfabeto() {} // Constructor por defecto
-    Alfabeto(std::string& cadena); // Constructor de la clase
+const char SPACE = ' ';
 
-    std::vector<Simbolo> get_alfabeto() const { return alfabeto_;} // Getter alfabeto
-    int get_size() const { return alfabeto_.size();} // Getter tamaño alfabeto
-    void add(Simbolo simbolo); // Metodo que añade un nuevo simbolo al alfabeto
-    bool buscar(Simbolo simbolo) const; // Metodo que comprueba si un elemento existe en el alfabeto
+class Alphabet {
+ private:
+  std::vector<Symbol> alphabet_;
 
-    friend std::ostream& operator<<(std::ostream& out, const Alfabeto& alfabeto); // Sobrecarga operador extraccion
+ public:
+  /// Constructores
+  Alphabet() {};
+  Alphabet(std::string& string);
 
-  private:
-    std::vector<Simbolo> alfabeto_;
+  /// Getters
+  std::vector<Symbol> getAlphabet() const { return alphabet_; };
+  int getSize() const { return alphabet_.size(); };
+
+  /// Funciones
+  bool find(Symbol symbol) const;
+  void add(Symbol symbol);
+
+  /// Sobrecargas
+  friend std::ostream& operator<<(std::ostream& out, const Alphabet& alphabet);
+  friend Alphabet operator+(const Alphabet& alphabet1, const Alphabet& alphabet2);
 };
+
+#endif

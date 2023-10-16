@@ -1,97 +1,104 @@
+#include <vector>
 #include "NFA.h"
 
-// Sobrecarga del operador <<
+/// @brief Constructor de copia
+NFA::NFA(const NFA& nfa) {
+  alphabet_ = nfa.getAlphabet();
+  states_ = nfa.getStates();
+  num_ = nfa.getNum();
+  initial_ = nfa.getInitial();
+  finals_ = nfa.getFinals();
+  transitions_ = nfa.getTransitions();
+}
+
+/// @brief Sobrecarga del operador <<
 std::ostream& operator<<(std::ostream& out, const NFA& nfa) {
-  out << "Alfabeto: " << nfa.get_Alfabeto() << std::endl;
-  out << "Num: " << nfa.get_numEstados() << std::endl;
-  out << "Inicial: " << nfa.get_estadoInicial() << std::endl;
+  out << "Alfabeto: " << nfa.getAlphabet() << std::endl;
+  out << "Num: " << nfa.getNum() << std::endl;
+  out << "Inicial: " << nfa.getInitial() << std::endl;
   out << "Estados: " << std::endl;
-  for (const auto& elem : nfa.get_Estados()) out << elem << std::endl;
+  for (const auto& elem : nfa.getStates()) out << elem << std::endl;
   out << "Finales: " << std::endl;
-  for (const auto& elem : nfa.get_estadosFinales()) out << elem << std::endl;
+  for (const auto& elem : nfa.getFinals()) out << elem << std::endl;
   out << "Transiciones: " << std::endl;
-  for (const auto& elem : nfa.get_transiciones()) out << elem << std::endl;
+  for (const auto& elem : nfa.getTransitions()) out << elem << std::endl;
   return out;
 }
 
-// Funcion que encuentra un estado con un identificador concreto
-Estado NFA::encontrarEstado(unsigned int identificador) {
-  Estado estado;
-  for(const auto& elemento : estados_) {
-    if (elemento.get_identificador() == identificador) {
-      estado = elemento;
-    }
+/// @brief Busca y devuelve el estado con ese id
+State NFA::find_state(unsigned int id) {
+  State state;
+  for (const auto& elem : states_) {
+    if (elem.getID() == id) state = elem;
   }
-  return estado;
+  return state;
 }
 
-// Metodo que calcula las e-clausuras de un conjunto de estados
-void NFA::epsilonTransiciones(std::vector<Estado>& estados) {
+/// Método que le pases un conjunto y te calcule E-clausura
+/// Unión de los E-clausura del conjunto
+/// Return cuando no tengas épsilon
+void NFA::epsilon_transition(std::vector<State>& states) {
   bool flag = true;
-  std::vector<Estado> copia = estados;
-
-  while(flag == true) {
+  std::vector<State> saved = states;
+  while (flag) {
     flag = false;
-    std::vector<Estado> estado_siguiente;
-
-    // Recorremos el vector de estados
-    for (const auto& elemento : estados)  {
-      for (const auto& transicion : transiciones_) {
-        if (transicion.get_estadoActual() == elemento.get_identificador()) {
-          if (transicion.get_simbolo() == '&') {
-            estado_siguiente.push_back(encontrarEstado(transicion.get_estadoSiguiente()));
-            copia.push_back(encontrarEstado(transicion.get_estadoSiguiente()));
+    std::vector<State> next_state;
+    for (const auto& elem : states) {
+      // std::cout << elem << std::endl;
+      for (const auto& transition : transitions_) {
+        if (transition.getActualState() == elem.getID()) {
+          // std::cout << transition << std::endl;
+          if (transition.getSymbol() == '&') {
+            // std::cout << transition << std::endl;
+            next_state.push_back(find_state(transition.getNextState()));
+            saved.push_back(find_state(transition.getNextState()));
+            // std::cout << find_state(transition.getNextState()) << std::endl;
             flag = true;
           }
         }
       }
     }
-    estados = estado_siguiente;
+    states = next_state;
   }
-  estados = copia;
+  states = saved;
 }
 
-// Funcion que comprueba si una cadena es o no aceptada por el NFA
-bool NFA::aceptacion(const Cadena& cadena_pasada) {
-  std::string cadena = cadena_pasada.get_cadena(); // Obtenemos la cadena como string para trabajar mas facil
-  
-  // Comprobamos la cadena vacia
-  if(cadena == "&") {
-    return inicial_.get_aceptacion();
-  }
-
-  std::vector<Estado> estados;
-  estados.push_back(get_estadoInicial()); // El vector de estados recooridos en el NFA solo tiene de meomento el estado inical
-
-  // Recorremos la cadena
-  for (const auto& elemento : cadena) {
-    std::vector<Estado> nuevos_estados;
-    Simbolo simbolo = elemento;
-
-    // Buscamos las e-transiciones
-    epsilonTransiciones(estados);
-
-    // Recorremos los estados del vector
-    for (const auto& estado : estados) {
-      // Buscamos las transiciones del estado
-      for (const auto& transicion : transiciones_) {
-        if (transicion.get_estadoActual() == estado.get_identificador()) {
-          if (transicion.get_simbolo() == simbolo) {
-            Estado nuevo_estado = encontrarEstado(transicion.get_estadoSiguiente());
-            nuevos_estados.push_back(nuevo_estado);
+/** 
+ *  @brief Comprueba si la cadena es aceptada por el autómata
+ *  @param[in] sequence
+ *  @return True si es aceptada, false si no
+ */
+bool NFA::accepted(const Sequence& sequence) {
+  std::string string = sequence.getString();
+  /// Comprobamos la cadena vacía
+  if (string == "&") return initial_.getFinal();
+  /// El vector de momento solo tiene el estado inicial
+  std::vector<State> states;
+  states.push_back(getInitial());
+  /// Recorremos la cadena
+  for (const auto& elem : string) {
+    std::vector<State> new_states;
+    Symbol symbol = elem;
+    /// Buscamos las E-transiciones
+    epsilon_transition(states);
+    /// Para cada estado del vector
+    for (const auto& state : states) {
+      /// Buscamos las transiciones
+      for (const auto& transition : transitions_) {
+        if (transition.getActualState() == state.getID()) {
+          /// Buscamos las que nos permiten transitar
+          if (transition.getSymbol() == symbol) {
+            State new_state = find_state(transition.getNextState());
+            new_states.push_back(new_state);
           }
         }
       }
-
     }
-    estados = nuevos_estados;
+    states = new_states;
   }
-
-  // Compprobamos si los estados son de aceptacion
-  for (const auto& elemento : estados) {
-    if (elemento.get_aceptacion()) {
-      return true;
-    }
-  }
+  /// Comprobamos si son de aceptación
+  for (const auto& elem : states) {
+    if (elem.getFinal()) return true;
+  } 
   return false;
 }

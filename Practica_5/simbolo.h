@@ -1,24 +1,30 @@
-#include<iostream>
-#include<string>
+#ifndef SYMBOL_H
+#define SYMBOL_H
 
-#pragma once 
+#include <iostream>
+#include <string>
 
-class Simbolo {
-  public:
-    Simbolo() {}; // Constructor por defecto
-    Simbolo(const char simbolo) { simbolo_ = simbolo; } // Constructor de la clase
-    Simbolo(const std::string& simbolo) { simbolo_ = simbolo; } // Constructor de la clase
+class Symbol {
+ private:
+  std::string symbol_;
 
-    std::string get_simbolo() const { return simbolo_; } // Getter simbolo
-    int get_length() const { return simbolo_.length(); } // Getter longitud string simbolo
+ public:
+  /// Constructores
+  Symbol() {};
+  Symbol(const std::string& symbol) { symbol_ = symbol; };
+  Symbol(const char symbol) { symbol_ = symbol; };
+  
+  /// Getters
+  std::string getSymbol() const { return symbol_; };
+  int getLength() const { return symbol_.length(); };
+  /// Setter
+  void setSymbol(std::string& symbol) { symbol_ = symbol; };
 
-    void set_simbolo(std::string& simbolo) { simbolo_ = simbolo; } // Setter simbolo
-
-    friend std::ostream& operator<<(std::ostream& out, const Simbolo& simbolo); // Sobrecarga operador extraccion
-    friend bool operator==(const Simbolo&simbolo1, const Simbolo& simbolo2);  // Sobrecarga operador ==
-    friend bool operator!=(const Simbolo& simbolo1, const Simbolo& simbolo2);  // Sobrecarga operador !=
-    friend bool operator<(const Simbolo& simbolo1, const Simbolo& simbolo2);  // Sobrecarga operador <
-
-  private:
-    std::string simbolo_;
+  /// Sobrecargas
+  friend std::ostream& operator<<(std::ostream& out, const Symbol& symbol);
+  friend bool operator==(const Symbol& symbol1, const Symbol& symbol2);
+  friend bool operator!=(const Symbol& symbol1, const Symbol& symbol2);
+  friend bool operator<(const Symbol& symbol1, const Symbol& symbol2);
 };
+
+#endif

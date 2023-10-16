@@ -1,40 +1,48 @@
+#include <iostream>
 #include "transicion.h"
 
-// Constructor de la clase
-Transicion::Transicion(Simbolo simbolo, unsigned int estadoActual, unsigned int estadoSiguiente) {
-  simbolo_ = simbolo;
-  estadoActual_ = estadoActual;
-  estadoSiguiente_ = estadoSiguiente;
+/// @brief Constructor de copia
+Transition::Transition(const Transition& transition) {
+  symbol_ = transition.getSymbol();
+  next_state_ = transition.getNextState();
+  actual_state_ = transition.getActualState();
 }
 
-// Sobrecarga del operador ==
-bool operator==(const Transicion& transicion1, const Transicion& transicion2) {
-  bool condicion = true;
-  if (transicion1.get_estadoActual() != transicion2.get_estadoActual()) condicion = false;
-  if (transicion1.get_estadoSiguiente() != transicion2.get_estadoSiguiente()) condicion = false;
-  if (transicion1.get_simbolo() != transicion2.get_simbolo()) condicion = false;
-  return condicion;
+/// @brief Constructor con parámetros
+Transition::Transition(const Symbol symbol, const unsigned int actual_state, const unsigned int next_state) {
+  symbol_ = symbol;
+  next_state_ = next_state;
+  actual_state_ = actual_state;
 }
 
-// Sobrecarga del operador !=
-bool operator!=(const Transicion& transicion1, const Transicion& transicion2) {
-  return !(transicion1 == transicion2);
+/// @brief Sobrecarga del operador ==
+bool operator==(const Transition& transition1, const Transition& transition2) {
+  bool equal = true;
+  if (transition1.getActualState() != transition2.getActualState()) equal = false;
+  if (transition1.getNextState() != transition2.getNextState()) equal = false;
+  if (transition1.getSymbol() != transition2.getSymbol()) equal = false;
+  return equal;
 }
 
-// Sobrecarga del operador <
-bool operator<(const Transicion& transicion1, const Transicion& transicion2) {
-  return transicion1.get_estadoActual() < transicion2.get_estadoActual();
+/// @brief Sobrecarga del operador !=
+bool operator!=(const Transition& transition1, const Transition& transition2) {
+  return !(transition1 == transition2);
 }
 
-// Sobrecarga del operador >
-bool operator>(const Transicion& transicion1, const Transicion& transicion2) {
-  return !(transicion1 < transicion2);
+/// @brief Sobrecarga del operador <
+bool operator<(const Transition& transition1, const Transition& transition2) {
+  return transition1.getActualState() < transition2.getActualState();
 }
 
-// Sobrecarga del operador <<
-std::ostream& operator<<(std::ostream& out, const Transicion& transicion) {
-  out << transicion.get_estadoActual();
-  out << "(" << transicion.get_simbolo() << "): ";
-  out << transicion.get_estadoSiguiente();
+/// @brief Sobrecarga del operador >
+bool operator>(const Transition& transition1, const Transition& transition2) {
+  return !(transition1 < transition2);
+}
+
+/// @brief Sobrecarga del operador <<
+std::ostream& operator<<(std::ostream& out, const Transition& transition) {
+  out << transition.getActualState();
+  out << "(" << transition.getSymbol() << "): ";
+  out << transition.getNextState();
   return out;
 }
