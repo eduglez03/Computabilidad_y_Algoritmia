@@ -52,7 +52,7 @@ class NFA {
   /// Funciones
   bool accepted(const Sequence& sequence);
   State find_state(unsigned int id);
-  void epsilon_transition(std::vector<State>& states);
+  void epsilon_transition(std::vector<State>& states, bool& es_nfa);
 
   /// Sobrecargas
   friend std::ostream& operator<<(std::ostream& out, const NFA& nfa);

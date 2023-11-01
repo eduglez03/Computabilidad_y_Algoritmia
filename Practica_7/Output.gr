@@ -1,0 +1,37 @@
+3
+a
+b
+c
+10
+Aa
+Ab
+Ac
+B0
+C0
+D0
+D1
+S
+X
+Y
+S
+20
+Aa --> a
+Ab --> b
+Ac --> c
+B0 --> AbX
+C0 --> XAb
+D0 --> AaD1
+D1 --> AbX
+S --> AaAb
+S --> AaB0
+S --> AaC0
+S --> XD0
+X --> AaY
+X --> AbY
+X --> a
+X --> b
+Y --> AaY
+Y --> AbY
+Y --> a
+Y --> b
+Y --> c

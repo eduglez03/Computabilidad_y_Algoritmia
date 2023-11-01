@@ -8,7 +8,9 @@ const std::string EMPTY_STR = "&";
 const std::string MARKS = "'";
 const std::string SPACE_STR = " ";
 
-/// Constructor
+/**
+ * @brief Constructor de la clase
+*/
 Sequence::Sequence(std::string& string) {
   /// Primero, contamos la cantidad de espacios de la línea
   int spaces = 0;
@@ -46,6 +48,10 @@ Sequence::Sequence(std::string& string) {
       sequence_.push_back(aux_string);
       aux_string.erase();
     }
+    else {
+      std::cout << "Cadena incorrecta. Revise el fichero de entrada." << std::endl;
+      exit(EXIT_SUCCESS);
+    }
   }
   if (aux_string != "") {
     std::cout << "Cadena incorrecta. Revise el fichero de entrada." << std::endl;
@@ -53,7 +59,9 @@ Sequence::Sequence(std::string& string) {
   }
 }
 
-/// Getter de la cadena
+/**
+ * @brief Getter cadena
+*/
 std::string Sequence::getSequence() const {
   std::string sequence = MARKS;
   for (const auto& symbol : sequence_) {

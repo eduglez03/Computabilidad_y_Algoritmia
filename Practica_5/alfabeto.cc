@@ -1,7 +1,9 @@
 #include <iostream>
 #include "alfabeto.h"
 
-/// Constructor
+/**
+ * @brief Constructor de la clase
+*/
 Alphabet::Alphabet(std::string& string) {
   for (const auto& elem : string) {
     Symbol symbol = elem;

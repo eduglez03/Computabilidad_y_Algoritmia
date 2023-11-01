@@ -8,6 +8,7 @@ int main(int argc, char* argv[]) {
   /// Comprobamos los parámetros
   if (argc == 1) { Error(argv[0]); }
   Usage(argc, argv);
+  
   /// Preparamos el fichero
   std::string kNFAFileName = argv[1];
   FileExist(kNFAFileName);

@@ -37,7 +37,7 @@ State NFA::find_state(unsigned int id) {
 /// Método que le pases un conjunto y te calcule E-clausura
 /// Unión de los E-clausura del conjunto
 /// Return cuando no tengas épsilon
-void NFA::epsilon_transition(std::vector<State>& states) {
+void NFA::epsilon_transition(std::vector<State>& states, bool& es_nfa) {
   bool flag = true;
   std::vector<State> saved = states;
   while (flag) {
@@ -54,6 +54,7 @@ void NFA::epsilon_transition(std::vector<State>& states) {
             saved.push_back(find_state(transition.getNextState()));
             // std::cout << find_state(transition.getNextState()) << std::endl;
             flag = true;
+            es_nfa = true;
           }
         }
       }
@@ -69,6 +70,7 @@ void NFA::epsilon_transition(std::vector<State>& states) {
  *  @return True si es aceptada, false si no
  */
 bool NFA::accepted(const Sequence& sequence) {
+  bool es_nfa = false;
   std::string string = sequence.getString();
   /// Comprobamos la cadena vacía
   if (string == "&") return initial_.getFinal();
@@ -80,7 +82,7 @@ bool NFA::accepted(const Sequence& sequence) {
     std::vector<State> new_states;
     Symbol symbol = elem;
     /// Buscamos las E-transiciones
-    epsilon_transition(states);
+    epsilon_transition(states, es_nfa);
     /// Para cada estado del vector
     for (const auto& state : states) {
       /// Buscamos las transiciones
@@ -100,5 +102,13 @@ bool NFA::accepted(const Sequence& sequence) {
   for (const auto& elem : states) {
     if (elem.getFinal()) return true;
   } 
+
+
+  if (es_nfa) {
+    std::cout << "Es NFA" << std::endl;
+  } else if(!es_nfa) {
+    std::cout << "Es DFA" << std::endl;
+  }
+
   return false;
 }

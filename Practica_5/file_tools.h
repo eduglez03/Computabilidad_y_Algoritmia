@@ -5,7 +5,7 @@
 
 #include "NFA.h"
 
-/** 
+/** n
  *  @brief Cuenta las líneas de un fichero
  *  @param[in] file
  *  @return Número de líneas del fichero
@@ -133,10 +133,6 @@ NFA FileToNFA(std::string& file_name) {
   nfa.setTransitions(transitions);
   return nfa;
 }
-
-/// @brief Comprueba si las cadenas son aceptadas por un NFA 
-/// @param kStringsFileName Fichero de cadenas
-/// @param nfa
 
 /** 
  *  @brief Pasa de un fichero .fa a NFA
