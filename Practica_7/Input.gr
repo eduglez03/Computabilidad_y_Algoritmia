@@ -1,23 +1,17 @@
-3
-a
-b
-c
-3
+2
+0
+1
+2
 S
-X
-Y
+A
 S
-13
-S aXbX
-S abX
-S aXb
-S ab
-X aY
-X bY
-X a
-X b
-Y aY
-Y bY
-Y a
-Y b
-Y c
+9
+S 0S1
+S 0A
+S 0
+S 1A
+S 1
+A 0A
+A 0
+A 1A
+A 1
