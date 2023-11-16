@@ -194,10 +194,20 @@ bool MaquinaTuring::SimularMT() {
       else {
         temporal[j] = Tuplas_[i].get_escribe().getSimbolo();
         if(Tuplas_[i].get_movimiento() == 'R'){
-          j++;
+          // Si estamos al final de la cinta, añadimos un símbolo vacío
+          if (j == temporal.size() - 1) {
+            temporal += vacio;
+          } else {
+              j++;
+          }
         }
         else if(Tuplas_[i].get_movimiento() == 'L'){
-          j--;
+          // Si estamos al principio de la cinta, añadimos un símbolo vacío
+          if (j == 0) {
+            temporal = vacio + temporal;
+          } else {
+              j--;
+          }
         }
         else{
           if(Tuplas_[i].get_sig_estado() == EstadoAceptacion_){
